@@ -8,10 +8,10 @@ title: Regression and Classification with Housing Data
 For this project I used housing sales data from Ames, Iowa.  This project had three objectives:
 
 	1. Predict selling house prices
-	2. Identify characteristics of houses that one cost effectively renovate
+	2. Identify characteristics of houses that one can cost effectively renovate
 	3. Predict abnormal house sales
 
-Based on the results of the analysis we could use these insights to identify houses that are likely to sell for more than the cost of the purchase plus renovations.  The data set provided was quite rich with many features identifying different aspects of each house sold.
+The analysis will assist in identifying houses that are likely to sell for more than the cost of the purchase plus renovations.  The data set provided was quite rich with many features identifying different aspects of each property sold.
 
 After loading and cleaning the data I began by identifying key features that would reflect house prices.  The key features I used were:
 - Lot Area
@@ -21,7 +21,7 @@ After loading and cleaning the data I began by identifying key features that wou
 - Unfinished Basement
 - Building Type
 
-Using a pair-lot we can see if there are any trends below.
+Using a pair-plot from the seaborn library we can see if there are any trends below.
 
 ![_config.yml]({{ site.baseurl }}/images/2_housing_pairplt.png)
 
