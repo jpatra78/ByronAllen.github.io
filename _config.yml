@@ -3,13 +3,13 @@
 #
 
 # Name of your site (displayed in the header)
-name: ByronAllen
+name: JeffPatra
 
 # Short bio or description (displayed in the header)
 description: Data Scientist
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: https://avatars0.githubusercontent.com/u/13349081?v=3&s=460 #https://github.com/ByronAllen/ByronAllen.github.io/blob/master/images/Byron_Allen_Profile_Picture.png
+avatar: https://avatars1.githubusercontent.com/u/25887502?v=3&s=400
 
 #
 # Flags below are optional
@@ -18,12 +18,12 @@ avatar: https://avatars0.githubusercontent.com/u/13349081?v=3&s=460 #https://git
 # Includes an icon in the footer for each username you enter
 footer-links:
   dribbble:
-  email: byron.a.allen@gmail.com
+  email: jpatra78@hotmail.com
   facebook:
   flickr:
-  github: ByronAllen
+  github: jpatra78
   instagram:
-  linkedin: https://au.linkedin.com/in/byronaallen
+  linkedin: https://au.linkedin.com/in/jeff-patra
   pinterest:
   rss: # just type anything here for a working RSS icon
   twitter: 
@@ -41,7 +41,7 @@ google_analytics:
 
 # Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
 # Used for Sitemap.xml and your RSS feed
-url: https://byronallen.github.io/
+url: https://github.com/jpatra78/jeff-patra.github.io
 
 
 # If you're hosting your site at a Project repository on GitHub pages
