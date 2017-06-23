@@ -1,18 +1,20 @@
 ---
 layout: post
-title: Solar Energy Prediction
+title: Solar Energy Prediction With Machine Learning
 ---
 ![_config.yml]({{ site.baseurl }}/images/1_Solar_cover.png)
 
 Solar energy is becoming increasingly popular as a renewable energy source. It offers many environmental advantages; however fluctuations with changing weather patterns have always been a problem. While solar may not entirely replace fossil fuels it has its place in the power generation portfolio. Many electricity companies are looking to add solar energy into their mix of power generation and in order to do so they require accurate solar production forecasts. Errors in forecasting could lead to large expenses like excess fuel consumption or emergency purchases of electricity from competitors. Applied machine learning techniques are useful in predicting more accurate forecasts.
 
-For my capstone I predicted solar energy across Oklahoma State using weather forecast data. The prediction will be trained and tested against the solar energy produced at 98 weather stations across the state over a fourteen year time period 1994-2007.  The data was acquired from a previous kaggle contest and can be found Click [here](https://www.kaggle.com/c/ams-2014-solar-energy-prediction-contest). 
+For my capstone I predicted solar energy across Oklahoma State using weather forecast data. The prediction will be trained and tested against the solar energy produced at 98 weather stations across the state over a fourteen year time period 1994-2007.  The data was acquired from a previous kaggle contest and can be found click [**here**](https://www.kaggle.com/c/ams-2014-solar-energy-prediction-contest). 
 
 From the data provided  it can describe them in two categories:
-	1. Global forecast information consisting of 15 netCDF4 files. Each file contains a specific forecast element array (i.e temperature, pressure, precipitation, etc) at a given latitude and longitude over a fourteen year period from 1994 – 2007 where the step rate is in days.
-	2. The second data set consists of calculated solar energy acquired from 98 weather stations (mesonets) during the same fourteen year period.
 
-![_config.yml]({{ site.baseurl }}/images/2_grid.png)
+- Global forecast information consisting of 15 netCDF4 files. Each file contains a specific forecast element array (i.e temperature, pressure, precipitation, etc) at a given latitude and longitude over a fourteen year period from 1994 – 2007 where the step rate is in days.
+
+- The second data set consists of calculated solar energy acquired from 98 weather stations (mesonets) during the same fourteen year period.
+
+![_config.yml]({{ site.baseurl }}/images/2_grid.png){:height="400px"}
 
 In simple terms the goal is to use the blue dots (weather forecast data) to predict the red dots (solar energy).
 
@@ -20,11 +22,11 @@ Before we do a full blown prediction let’s look at the elevation and solar ene
 
 Station mesonets by elevation in feet.
 
-![_config.yml]({{ site.baseurl }}/images/3_elevation.png)
+![_config.yml]({{ site.baseurl }}/images/3_elevation.png){:height="400px"}
 
 Station mesonets by average solar energy production.
 
-![_config.yml]({{ site.baseurl }}/images/4_solar_pred_map.png)
+![_config.yml]({{ site.baseurl }}/images/4_solar_pred_map.png){:height="400px"}
 
 Interestingly before we have done any prediction there appears to be a relationship between elevation and solar energy production.  In the southeast elevation is lower and as you move towards the northwest elevation increases. The same trend holds true for solar energy production.
 
@@ -36,7 +38,7 @@ Prior to running the model we will standardise our data.  Standardising takes al
 
 The first predictive model we will try on our data will be a simple multi-linear regression using all fifteen features as inputs. The multi-linear regression produced an r-squared of 77%.  Based on just a straight multi-linear regression this is a pretty high baseline score.  When we run other machine learning models using the sci-kit learn module in python we get the following cross validated results:
 
-![_config.yml]({{ site.baseurl }}/images/5_scores.png)
+![_config.yml]({{ site.baseurl }}/images/5_scores.png){:height="400px"}
 
 Gradient boosting method resulted with the best r-squared of 78%.
 
@@ -71,11 +73,11 @@ Based on the grid search tuning we improved the r-squared by 1.2%.
 
 Now that we have tuned our hyper parameters we can perform principal component analysis (PCA).  Through PCA we can evaluate if there is any opportunity at reducing dimensionality.  Doing so could lead to better prediction results and reduced computing time. Using the principal component module in sci-kit learn we convert our fifteen features into principal component space.  Once all our features were in the PC space we plotted the explained variance ratio versus each component to identify which ones were the major contributors.  Below is the elbow plot of the each component:
 
-![_config.yml]({{ site.baseurl }}/images/9_PCA.png)
+![_config.yml]({{ site.baseurl }}/images/9_PCA.png){:height="400px"}
 
 The plot above indicates that the major components are PC1, PC2 and PC3 where PC4 – PC15 explain less than one percent of all the components.  Now lets see if we can see if there any major features in each component that are driving the result:
 
-![_config.yml]({{ site.baseurl }}/images/10_P_comp.png)
+![_config.yml]({{ site.baseurl }}/images/10_P_comp.png){:height="400px"}
 
 Comparing the values within each component to the features does not indicate any dominant features.  This is also displayed on a scatter plot to see if there are any dominant trends in each component:
 
@@ -83,7 +85,7 @@ Comparing the values within each component to the features does not indicate any
 
 In the interest of science we are going to run all the models so we can evaluate and compare the results.  If this were deployment I would choose the best two and compare.  We performed two full scale runs.  The first run looped through each station over the entire fourteen year period using a 90% train, 10% test split. This model did not utilise any tuning or PCA.  The total run time of this model was 1475 seconds (24.6 minutes).  The second run utilised the grid search input parameters and the reduced dimensionality from the principal component analysis.  The total computing time for the second model run was 1087s (18.1 minutes) which is equivalent to 26% savings in time (6.5 minutes).  Whilst this is not a large absolute time the PCA has the potential to save a lot if we were evaluating a larger region like the entire USA.  As a check to ensure that we are not losing accuracy with the reduced dimensionality we plotted the gradient boost with 15 features versus PC reduced gradient boost.  The plot below demonstrates very little loss.
 
-![_config.yml]({{ site.baseurl }}/images/11_PCA_pred_vs_pred.png)
+![_config.yml]({{ site.baseurl }}/images/11_PCA_pred_vs_pred.png){:height="400px"}
 
 A closer view of the model predictions indicate that each model struggles to predict at the high end.  One possible cause is the effect of severe weather patterns like tornadoes.
 

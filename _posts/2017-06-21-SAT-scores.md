@@ -3,6 +3,8 @@ layout: post
 title: Exploratory Data Analysis of SAT scores
 ---
 
+![_config.yml]({{ site.baseurl }}/images/1_sat_scores.png)
+
 As an introduction to exploratory data analysis (EDA) I was given a csv file of SAT scores.  The objective was to load and find insights into the data.  The first step was to read in and condition the data if necessary.
 
 ![_config.yml]({{ site.baseurl }}/images/sat_head_1.png)
